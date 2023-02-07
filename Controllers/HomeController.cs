@@ -26,10 +26,9 @@ namespace Paychex_SimpleTimeClock.Controllers
 
         public async Task<IActionResult> AuthenticatePaychex([FromBody] List<KeyValuePair<string, object>> obj)
         {
-            var userID = (await _paychexDataAccess.Login(obj.GetStringValue("Username"), obj.GetStringValue("Password")));
-            HttpContext.Session.SetString("UserID", userID);
-               
-            return !string.IsNullOrWhiteSpace(userID)
+            var userId = (await _paychexDataAccess.Login(obj.GetStringValue("Username"), obj.GetStringValue("Password")));
+            HttpContext.Session.SetString("UserID", userId);
+            return !string.IsNullOrWhiteSpace(userId)
                 ? View("~/Views/TimeClock/Index.cshtml")
                 : Json(false);
         }

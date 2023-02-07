@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Paychex_SimpleTimeClock.Authorization;
+using Paychex_SimpleTimeClock.Authorization.Repository;
 using Paychex_SimpleTimeClock.DataAccess.Interface;
 
 namespace Paychex_SimpleTimeClock.Controllers
 {
-    [Authorize]
+    [RequiresPermission(Permission.Employee, Permission.Admin)]
     public class TimeClockController : Controller
     {
         private readonly IPaychexDataAccess _paychexDataAccess;

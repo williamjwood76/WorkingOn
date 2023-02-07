@@ -35,6 +35,14 @@ namespace Paychex_SimpleTimeClock.DataAccess.Repository
 
         }
 
+        public async Task<Users?> GetLoggedInUser(string userID)
+        {
+            await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
+            return await dbContext.Users
+                .Where(x => x.UserID == userID)
+                .FirstOrDefaultAsync();
+        }
+
 
     }
 }
