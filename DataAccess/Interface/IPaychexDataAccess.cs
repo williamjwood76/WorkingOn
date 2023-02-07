@@ -7,5 +7,9 @@ namespace Paychex_SimpleTimeClock.DataAccess.Interface
         public Task<IEnumerable<AvailableBreaks>> GetAvailableBreaks();
 
         public Task<string> Login(string username, string password);
+
+        public Task<Users?> GetLoggedInUser(string userID);
+
+
     }
 }
