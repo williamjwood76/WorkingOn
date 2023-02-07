@@ -1,0 +1,17 @@
+[
+  {
+    "RoleID": 1,
+    "RoleName": "Administrator",
+    "Active": true
+  },
+  {
+    "RoleID": 2,
+    "RoleName": "Active Employee",
+    "Active": true
+  },
+  {
+    "RoleID": 3,
+    "RoleName": "Inactive Employee",
+    "Active": true
+  }
+]

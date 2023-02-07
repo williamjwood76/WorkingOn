@@ -24,8 +24,7 @@
         $("#btnLogin").on("click", () => {
             paychex.ajaxCall("Home/AuthenticatePaychex", GetAuthenticationFieldsValue())
                 .then((response) => {
-                    Response.redirect("/TimeClock");
-                    //$.magnificPopup.clse();
+                    $.magnificPopup.clse();
                     if (!JSON.parse(response))
                         paychex.openPopup('#modalEmailError');
                 });

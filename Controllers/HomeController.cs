@@ -34,10 +34,6 @@ namespace Paychex_SimpleTimeClock.Controllers
                 : Json(false);
         }
             
-        
-
-
-
         public IActionResult Privacy() => View();
 
         public IActionResult Error() => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

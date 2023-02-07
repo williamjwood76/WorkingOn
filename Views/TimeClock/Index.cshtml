@@ -24,18 +24,22 @@
             <th scope="row"></th>
             <td>v.AvailableShiftID</td>
             <td>v.AvailableBreakName</td>
-            <td>v.Active</td>
+            <td><input type=checkbox name="chkActive" value="true" class="form-check-input" /></td>
         </tr>
 @foreach(var v in Model)
 {
         <tr>
-            <th scope="row">@v.AvailableBreakID</th>
-            <td>@v.AvailableShiftID</td>
+            <th scope="row">
+                @v.AvailableBreakID
+            </th>
+            <td>
+                @v.AvailableShiftID
+            </td>
             <td>
                 <input name="AvailableBreakName" type="text" value="@v.AvailableBreakName" />
             </td>
                 <td>
-                    <input type=checkbox name="Active" checked="@v.Active" value="true" class="form-check-input" />
+                    <input type=checkbox name="chkActive" checked="@v.Active" value="true" class="form-check-input" />
                 </td>
         </tr>
  }

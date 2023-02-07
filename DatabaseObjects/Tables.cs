@@ -3,18 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Paychex_SimpleTimeClock.DatabaseObjects
 {
-    public class Roles
-    {
-        [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int RoleID { get; set; }
-
-        [Required, MaxLength(50)]
-        public string RoleName { get; set; }
-
-        [Required]
-        public bool Active { get; set; }
-    }
-
     public class AvailableShifts
     {
         [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -29,7 +17,7 @@ namespace Paychex_SimpleTimeClock.DatabaseObjects
 
     public class AvailableBreaks
     {
-        [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, Required]
         public int AvailableBreakID { get; set; }
 
         [Required]
@@ -42,10 +30,22 @@ namespace Paychex_SimpleTimeClock.DatabaseObjects
         public bool Active { get; set; }
     }
 
+    public class Roles
+    {
+        [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int RoleID { get; set; }
+
+        [Required, MaxLength(50)]
+        public string RoleName { get; set; }
+
+        [Required]
+        public bool Active { get; set; }
+    }
+
     public class Users
     {
         [Key, Required]
-        public string UserID { get; set; }
+        public int UserID { get; set; }
 
         [Required, MaxLength(50)]
         public string UserName { get; set; }
@@ -60,32 +60,13 @@ namespace Paychex_SimpleTimeClock.DatabaseObjects
         public bool Active { get; set; }
     }
 
-    public class UserShifts
-    {
-        [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int UserShiftID { get; set; }
-
-        [Required]
-        public Guid UserID { get; set; }
-
-        [Required]
-        public int AvailableShiftID { get; set; }
-
-        [Required]
-        public DateTime UserShiftStart { get; set; }
-
-        [Required]
-        public DateTime UserShiftEnd { get; set; }
-
-    }
-
     public class UserBreaks
     {
         [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserBreakID { get; set; }
 
         [Required]
-        public Guid UserID { get; set; }
+        public int UserID { get; set; }
 
         [Required]
         public int AvailableBreakID { get; set; }
@@ -95,6 +76,25 @@ namespace Paychex_SimpleTimeClock.DatabaseObjects
 
         [Required]
         public DateTime UserBreakEnd { get; set; }
+
+    }
+
+    public class UserShifts
+    {
+        [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int UserShiftID { get; set; }
+
+        [Required]
+        public int UserID { get; set; }
+
+        [Required]
+        public int AvailableShiftID { get; set; }
+
+        [Required]
+        public DateTime UserShiftStart { get; set; }
+
+        [Required]
+        public DateTime UserShiftEnd { get; set; }
 
     }
 }
