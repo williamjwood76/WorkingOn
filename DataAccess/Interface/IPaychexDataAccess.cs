@@ -4,12 +4,13 @@ namespace Paychex_SimpleTimeClock.DataAccess.Interface
 {
     public interface IPaychexDataAccess
     {
-        public Task<IEnumerable<AvailableBreaks>> GetAvailableBreaks();
+        public Task<IEnumerable<AvailableBreaks>> GetAvailableBreaks(int userId);
 
-        public Task<string> Login(string username, string password);
+        public Task<int> Login(string username, string password);
 
-        public Task<Users?> GetLoggedInUser(string userID);
+        public Task<Users?> GetLoggedInUser(int userID);
 
+        public Task<IEnumerable<object>> GetAvailableWorkShiftsByUser(int userId);
 
     }
 }

@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Paychex_SimpleTimeClock.DataAccess.Interface;
-using Paychex_SimpleTimeClock.DataAccess.Repository;
 using Paychex_SimpleTimeClock.Models;
 using System.Diagnostics;
 
@@ -16,6 +14,7 @@ namespace Paychex_SimpleTimeClock.Controllers
             _paychexDataAccess = payChexDataAccess;
         }
 
+        private int GetUserID() => int.Parse(HttpContext.Session.GetString("UserID") ?? "-1");
 
         //Get 
         //public IActionResult Index([FromQuery] variableName)
@@ -27,9 +26,10 @@ namespace Paychex_SimpleTimeClock.Controllers
         public async Task<IActionResult> AuthenticatePaychex([FromBody] List<KeyValuePair<string, object>> obj)
         {
             var userId = (await _paychexDataAccess.Login(obj.GetStringValue("Username"), obj.GetStringValue("Password")));
-            HttpContext.Session.SetString("UserID", userId);
-            return !string.IsNullOrWhiteSpace(userId)
-                ? View("~/Views/TimeClock/Index.cshtml")
+            HttpContext.Session.SetString("UserID", userId.ToString());
+            
+            return !string.IsNullOrWhiteSpace(userId.ToString())
+                ? View("~/Views/TimeClock/Index.cshtml", await _paychexDataAccess.GetAvailableWorkShiftsByUser(GetUserID()))
                 : Json(false);
         }
             

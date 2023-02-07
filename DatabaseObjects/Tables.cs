@@ -93,8 +93,7 @@ namespace Paychex_SimpleTimeClock.DatabaseObjects
         [Required]
         public DateTime UserShiftStart { get; set; }
 
-        [Required]
-        public DateTime UserShiftEnd { get; set; }
+        public DateTime? UserShiftEnd { get; set; }
 
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Paychex_SimpleTimeClock.DataAccess.Interface;
 using Paychex_SimpleTimeClock.DatabaseObjects;
-using Paychex_SimpleTimeClock.Models;
 
 namespace Paychex_SimpleTimeClock.DataAccess.Repository
 {
@@ -13,7 +12,7 @@ namespace Paychex_SimpleTimeClock.DataAccess.Repository
         {
             _dbContextFactory = dbContextFactory;
         }
-        public async Task<string> Login(string username, string password)
+        public async Task<int> Login(string username, string password)
         {
             await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
             var v = dbContext.Users;
@@ -21,33 +20,53 @@ namespace Paychex_SimpleTimeClock.DataAccess.Repository
                 .Where(x => x.UserName == username)
                 .Where(x => x.Password == password)
                 .Select(x => x.UserID)
-                .FirstOrDefaultAsync()
-                ;
+                .FirstOrDefaultAsync();
 
         }
 
-        public async Task<IEnumerable<AvailableBreaks>> GetAvailableBreaks()
+        public async Task<IEnumerable<AvailableBreaks>> GetAvailableBreaks(int userId)
         {
-            await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
-            return await dbContext.AvailableBreaks
-                .Where(x => x.Active)
-                .ToListAsync();
+            if (!await IsClockedIn(userId))
+                return null;
+
+            //have taken any breaks?
+
+
+
+
+            //await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
+            //return await dbContext.AvailableBreaks
+            //    .Where(x => x.Active)
+            //    .Where(x => x.AvailableShiftID)
+            //    .ToListAsync();
+            return null;
         }
 
-        public async Task<List<TimeClockModel>> GetAvailableWorkShiftsByUser(Guid UserID)
+        public async Task<IEnumerable<object>> GetAvailableWorkShiftsByUser(int userId)
         {
             await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
-            return
+            var results = await
                 (
-                from us in dbContext.UserShifts
-                join u in dbContext.Users on us.UserID equals u.UserID
-                select new TimeClockModel
-                {
-                    userShifts = us,
-                    users = u
-                })
-                .ToListAsync()
-                ;
+                    from userShifts in dbContext.UserShifts
+                    join userBreaks in dbContext.UserBreaks on userShifts.UserID equals userId
+                    join user in dbContext.Users on userBreaks.UserID equals userId
+                    where 
+                        user.UserID == userId
+                        &&
+                        user.Active
+                    select new 
+                    {
+                        user.UserID,
+                        user.UserRoleID,
+                        user.UserName,
+                        userShifts.AvailableShiftID,
+                        userShifts.UserShiftStart,
+                        userShifts.UserShiftEnd
+                    }
+                ).ToListAsync();
+
+            return results;
+
                 //.Join(dbContext.Users,
                 //u => u.UserID,
                 //p =>p.UserID,
@@ -66,7 +85,22 @@ namespace Paychex_SimpleTimeClock.DataAccess.Repository
                 //.ToListAsync();
         }
 
-        public async Task<Users?> GetLoggedInUser(string userID)
+        //log clock in
+
+        //log clock out
+
+        public async Task<bool> IsClockedIn(int userID)
+        {
+            await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
+            return await dbContext.UserShifts
+                .Where(x => x.UserID == userID)
+                .Where(x => x.UserShiftStart < DateTime.Now)
+                .Where(x => x.UserShiftEnd == null)
+                .AnyAsync();
+        }
+
+
+        public async Task<Users?> GetLoggedInUser(int userID)
         {
             await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
             return await dbContext.Users

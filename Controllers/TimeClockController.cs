@@ -14,13 +14,14 @@ namespace Paychex_SimpleTimeClock.Controllers
             _paychexDataAccess  = paychexDataAccess;
         }
 
+        private int GetUserID() => int.Parse(HttpContext.Session.GetString("UserID") ?? "-1");
 
 
         // GET: TimeClockController
         public async Task<IActionResult> Index()
         {
-            var someValue = await _paychexDataAccess.GetAvailableBreaks();
-            return View(someValue.ToList());
+            //var someValue = await _paychexDataAccess.GetAvailableWorkShiftsByUser(GetUserID());
+            return View();
         } 
 
         // GET: TimeClockController/Details/5

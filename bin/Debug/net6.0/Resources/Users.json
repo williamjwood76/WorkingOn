@@ -1,23 +1,23 @@
 [
   {
-    "UserID": "161e2419-d85c-4d1d-be49-ce013227e5e9",
+    "UserID": 1,
     "UserName": "Admin",
     "Password": "password",
     "UserRoleID": 1,
     "Active": true
   },
   {
-    "UserID": "cfbbb229-02d3-441e-bd28-7d2d77ca230d",
+    "UserID": 25,
     "UserName": "Bill Wood",
     "Password": "password",
     "UserRoleID": 2,
     "Active": true
   },
   {
-    "UserID": "185fdc68-ff21-4727-8cd9-1e6e0bbf63c9",
+    "UserID": 50,
     "UserName": "Inactive Employee",
     "Password": "password",
-    "UserRoleID": 3,
+    "UserRoleID": 1,
     "Active": true
   }
 ]

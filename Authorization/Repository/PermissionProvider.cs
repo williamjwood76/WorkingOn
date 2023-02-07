@@ -17,9 +17,9 @@ namespace Paychex_SimpleTimeClock.Authorization.Repository
         public async Task<bool> IsUserAuthorized(string permission)
         {
 
-            var userId = _httpContextAccessor.HttpContext?.Session.GetString("UserID");
+            var userId = int.Parse(_httpContextAccessor.HttpContext?.Session.GetString("UserID") ?? "-1");
             
-            if (userId == null)
+            if (userId < 0)
                 return false;
 
             var user = await _paychexDataAccess.GetLoggedInUser(userId);
