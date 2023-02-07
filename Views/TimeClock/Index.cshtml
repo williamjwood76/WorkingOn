@@ -1,0 +1,43 @@
+﻿@using Paychex_SimpleTimeClock.DatabaseObjects
+@{
+    ViewData["Title"] = "Time Clock";
+    var _model = (List<AvailableBreaks>)Model;
+    var s = _model;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the Secured Side</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<table class="table">
+    <thead>        
+        <tr>
+            <th scope="col">Break ID</th>
+            <th scope="col">Shift ID</th>
+            <th scope="col">Break Name</th>
+            <th scope="col">Active</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row"></th>
+            <td>v.AvailableShiftID</td>
+            <td>v.AvailableBreakName</td>
+            <td>v.Active</td>
+        </tr>
+@foreach(var v in Model)
+{
+        <tr>
+            <th scope="row">@v.AvailableBreakID</th>
+            <td>@v.AvailableShiftID</td>
+            <td>
+                <input name="AvailableBreakName" type="text" value="@v.AvailableBreakName" />
+            </td>
+                <td>
+                    <input type=checkbox name="Active" checked="@v.Active" value="true" class="form-check-input" />
+                </td>
+        </tr>
+ }
+    </tbody>
+</table>

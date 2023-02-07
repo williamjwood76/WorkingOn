@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Paychex_SimpleTimeClock.props" />
+</Project>

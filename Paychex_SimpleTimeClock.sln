@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paychex_SimpleTimeClock", "Paychex_SimpleTimeClock.csproj", "{83BAA4BD-9A44-4E5A-B40E-A280B09F587C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83BAA4BD-9A44-4E5A-B40E-A280B09F587C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83BAA4BD-9A44-4E5A-B40E-A280B09F587C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83BAA4BD-9A44-4E5A-B40E-A280B09F587C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83BAA4BD-9A44-4E5A-B40E-A280B09F587C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5AFC75F9-6D8B-4287-A765-9A8F7533C61E}
+	EndGlobalSection
+EndGlobal

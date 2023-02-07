@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@*src=""*@
+<script type="text/javascript" asp-append-version="true">
+    var paychex = paychex || {};
+    $(()=>{
+        var GetAuthenticationFieldsValue = () => {
+            var postValue = [];
+            postValue.push(
+
+                {
+                    "Key": "Username",
+                    "Value": $("#txtUsername").val()
+                });
+            postValue.push(
+                {
+                    "Key": "Password",
+                    "Value": $("#txtPassword").val()
+                });
+            return postValue;
+        }
+
+        $("#btnLogin").on("click", () => {
+            paychex.ajaxCall("Home/AuthenticatePaychex", GetAuthenticationFieldsValue())
+                .then((response) => {
+                    Response.redirect("/TimeClock");
+                    //$.magnificPopup.clse();
+                    if (!JSON.parse(response))
+                        paychex.openPopup('#modalEmailError');
+                });
+        })
+    });
+</script>
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p><input id="txtUsername" placeholder="Enter Username" /></p>
+    <p><input id="txtPassword" placeholder="Enter Password" type="password" /></p>
+    <p><button id="btnLogin">Login</button></p>
+</div>
