@@ -13,35 +13,47 @@
 <table class="table">
     <thead>        
         <tr>
-            <th scope="col">Break ID</th>
-            <th scope="col">Shift ID</th>
-            <th scope="col">Break Name</th>
-            <th scope="col">Active</th>
+            <th scope="col">Username</th>
+            <th scope="col">UserShiftStart</th>
+            <th scope="col">UserShiftEnd</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <th scope="row"></th>
-            <td>v.AvailableShiftID</td>
-            <td>v.AvailableBreakName</td>
-            <td><input type=checkbox name="chkActive" value="true" class="form-check-input" /></td>
+            <td scope="row">
+                <input id="UserShiftStart" type="text" value="@DateTime.Now"/>
+            </td>
+            <td>
+                <input id="txtUserShiftEnd" type="text" />
+            </td>
+            <td><button id="btnSaveUserShiftLog">Log Shift</button></td>
         </tr>
 @foreach(var v in Model)
 {
         <tr>
-            <th scope="row">
-                @v.AvailableBreakID
-            </th>
-            <td>
-                @v.AvailableShiftID
+            <td scope="row">
+                @v.UserName
             </td>
             <td>
+                @v.UserShiftEnd
+            </td>
+            <td>
+                @v.UserShiftEnd
+            </td>
+@*            <td>
                 <input name="AvailableBreakName" type="text" value="@v.AvailableBreakName" />
             </td>
-                <td>
-                    <input type=checkbox name="chkActive" checked="@v.Active" value="true" class="form-check-input" />
-                </td>
+            <td>
+                <input type=checkbox name="chkActive" checked="@v.Active" value="true" class="form-check-input" />
+            </td>*@
         </tr>
  }
     </tbody>
 </table>
+
+@*user.UserID,
+user.UserRoleID,
+user.UserName,
+userShifts.AvailableShiftID,
+userShifts.UserShiftStart,
+userShifts.UserShiftEnd*@

@@ -3,7 +3,7 @@
     "UserBreakID": 1,
     "UserID": 2,
     "AvailableBreakID": 1,
-    "UserBreakStart": "02/07/2023 12:00:00",
-    "UserBreakEnd": "02/07/2023 12:30:00"
+    "UserBreakStart": "2023-02-07T12:00:00",
+    "UserBreakEnd": "2023-02-07T12:30:00"
   }
 ]
