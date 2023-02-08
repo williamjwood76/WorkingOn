@@ -1,0 +1,9 @@
+[
+  {
+    "UserShiftID": 1,
+    "UserID": 2,
+    "AvailableShiftID": 1,
+    "UserShiftStart": "2023-02-07T09:00:00",
+    "UserShiftEnd": "2023-02-07T17:00:00"
+  }
+]
