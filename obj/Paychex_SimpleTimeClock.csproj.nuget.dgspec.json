@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\awest\\Source\\Repos\\WorkingOn\\Paychex_SimpleTimeClock.csproj": {}
+    "C:\\Users\\williamwood\\source\\repos\\WorkingOn\\Paychex_SimpleTimeClock.csproj": {}
   },
   "projects": {
-    "C:\\Users\\awest\\Source\\Repos\\WorkingOn\\Paychex_SimpleTimeClock.csproj": {
+    "C:\\Users\\williamwood\\source\\repos\\WorkingOn\\Paychex_SimpleTimeClock.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\awest\\Source\\Repos\\WorkingOn\\Paychex_SimpleTimeClock.csproj",
+        "projectUniqueName": "C:\\Users\\williamwood\\source\\repos\\WorkingOn\\Paychex_SimpleTimeClock.csproj",
         "projectName": "Paychex_SimpleTimeClock",
-        "projectPath": "C:\\Users\\awest\\Source\\Repos\\WorkingOn\\Paychex_SimpleTimeClock.csproj",
-        "packagesPath": "C:\\Users\\awest\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\awest\\Source\\Repos\\WorkingOn\\obj\\",
+        "projectPath": "C:\\Users\\williamwood\\source\\repos\\WorkingOn\\Paychex_SimpleTimeClock.csproj",
+        "packagesPath": "C:\\Users\\williamwood\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\williamwood\\source\\repos\\WorkingOn\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\awest\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\williamwood\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

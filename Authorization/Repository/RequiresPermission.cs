@@ -6,12 +6,10 @@ namespace Paychex_SimpleTimeClock.Authorization.Repository
 {
     public class RequiresPermission : TypeFilterAttribute
     {
-
         public RequiresPermission(params string[] permissions) : base(typeof(RequiresPermissionExecutor))
         {
             Arguments = new[] { new PermissionAuthorization(permissions) };
         }
-
 
         private class RequiresPermissionExecutor : Attribute, IAsyncResourceFilter
         {
@@ -47,5 +45,4 @@ namespace Paychex_SimpleTimeClock.Authorization.Repository
             }
         }
     }
-
 }

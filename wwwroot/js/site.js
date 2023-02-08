@@ -20,15 +20,4 @@ $(() => {
             }
         });
     };
-    paychex.openPopup = (id) => {
-        $.magnificPopup.open({
-            items: {
-                type: "inline",
-                src: id
-            },
-            showCloseBtn: false,
-            closeOnBgClick: false,
-            modal: true
-        });
-    }
 });

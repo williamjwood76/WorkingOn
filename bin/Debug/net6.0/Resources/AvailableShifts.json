@@ -1,12 +1,1 @@
-[
-  {
-    "AvailableShiftID": 1,
-    "AvailableShiftName": "AM",
-    "Active": true
-  },
-  {
-    "AvailableShiftID": 2,
-    "AvailableShiftName": "PM",
-    "Active": true
-  }
-]
+[{"AvailableShiftID":1,"AvailableShiftName":"AM","Active":true},{"AvailableShiftID":2,"AvailableShiftName":"PM","Active":true}]

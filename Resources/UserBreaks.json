@@ -1,9 +1,1 @@
-[
-  {
-    "UserBreakID": 1,
-    "UserID": 1,
-    "AvailableBreakID": 1,
-    "UserBreakStart": "2023-02-07T12:00:00",
-    "UserBreakEnd": "2023-02-07T12:30:00"
-  }
-]
+[{"UserBreakID":1,"UserID":1,"AvailableBreakID":1,"UserBreakStart":"2023-02-07T12:00:00","UserBreakEnd":"2023-02-07T12:30:00"}]

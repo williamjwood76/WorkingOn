@@ -30,10 +30,21 @@ namespace Paychex_SimpleTimeClock.DatabaseObjects
         {
             var context = _webHostEnvironment.ContentRootPath;
 
-            //Todo:  for all files
+            await File.WriteAllTextAsync($"{context}Resources\\AvailableBreaks.json", JsonSerializer.Serialize(await AvailableBreaks.ToListAsync()));
+            await File.WriteAllTextAsync($"{context}Resources\\AvailableShifts.json", JsonSerializer.Serialize(await AvailableShifts.ToListAsync()));
             await File.WriteAllTextAsync($"{context}Resources\\Roles.json", JsonSerializer.Serialize(await Roles.ToListAsync()));
+            await File.WriteAllTextAsync($"{context}Resources\\UserBreaks.json", JsonSerializer.Serialize(await UserBreaks.ToListAsync()));
+            await File.WriteAllTextAsync($"{context}Resources\\Users.json", JsonSerializer.Serialize(await Users.ToListAsync()));
             await File.WriteAllTextAsync($"{context}Resources\\UserShifts.json", JsonSerializer.Serialize(await UserShifts.ToListAsync()));
 
+            return await SaveChangesAsync();
+        }
+
+        public async Task<int> RegisterEmployeeAsync()
+        {
+            var context = _webHostEnvironment.ContentRootPath;
+
+            await File.WriteAllTextAsync($"{context}Resources\\Users.json", JsonSerializer.Serialize(await Users.ToListAsync()));
 
             return await SaveChangesAsync();
         }

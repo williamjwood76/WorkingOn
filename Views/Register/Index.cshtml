@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Register";
+}
+<script type="text/javascript" asp-append-version="true">
+    var paychex = paychex || {};
+    
+    $(()=>
+    {
+        var GetRegistrationFieldsValue = () => {
+            var postValue = [];
+            postValue.push(
+
+                {
+                    "Key": "Username",
+                    "Value": $("#txtUsername").val()
+                });
+            postValue.push(
+                {
+                    "Key": "Password",
+                    "Value": $("#txtPassword").val()
+                });
+            return postValue;
+        }
+
+        $("#btnRegisterEmployee").on("click", () => {
+            paychex.ajaxCall("Register/RegisterEmployee", GetRegistrationFieldsValue())
+                .then((response) => {
+                    if (response)
+                        window.location = "/";
+                });
+        })
+    });
+</script>
+
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the Paychex Simple Time Clock Registration Page</h1>
+</div>
+
+<hr/>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            
+        </div>
+        <div class="col-sm">
+
+                <div class="row">
+                    <div class="col-sm">
+                        Username
+                    </div>
+                    <div class="col-lg">
+                        <p><input id="txtUsername" name="Username" type="text" required /></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        Password
+                    </div>
+                    <div class="col-lg">
+                        <p><input id="txtPassword" name="Password" type="password" required /></p>
+                    </div>
+                </div>
+
+            <div class="row">
+                <div class="col-sm">
+
+                </div>
+                <div class="col-sm">
+                    <button id="btnRegisterEmployee">Register</button>
+                </div>
+                <div class="col-sm">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            
+        </div>
+    </div>
+</div>

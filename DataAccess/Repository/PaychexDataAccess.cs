@@ -50,11 +50,11 @@ namespace Paychex_SimpleTimeClock.DataAccess.Repository
                     from userShifts in dbContext.UserShifts
                     join userBreaks in dbContext.UserBreaks on userShifts.UserID equals userId
                     join user in dbContext.Users on userBreaks.UserID equals userId
-                    where 
+                    where
                         user.UserID == userId
                         &&
                         user.Active
-                    select new 
+                    select new
                     {
                         user.UserID,
                         user.UserRoleID,
@@ -69,25 +69,7 @@ namespace Paychex_SimpleTimeClock.DataAccess.Repository
             await dbContext.CustomSaveChangesAsync();
 
             return results;
-
-                //.Join(dbContext.Users,
-                //u => u.UserID,
-                //p =>p.UserID,
-                //(u, p) => new 
-                //{
-                //    p.UserID,
-                //    p.UserRoleID,
-                //    p.UserName,
-                //    u.AvailableShiftID,
-                //    u.UserShiftStart,
-                //    u.UserShiftEnd,
-
-                //})
-                //.Where(x => x.Active, y => y.UserID == UserID)
-                //.OrderByDescending(o => o.UserShiftStart)
-                //.ToListAsync();
         }
-
         //log clock in
 
         //log clock out
@@ -144,7 +126,23 @@ namespace Paychex_SimpleTimeClock.DataAccess.Repository
 
         }
 
+        public async Task<int> RegisterEmployee(string userName, string password)
+        {
+            await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
 
+            var newRegistration = new Users
+            {
+                UserName = userName,
+                Password = password,
+                UserRoleID = 2,
+                Active = true
+            };
 
+            await dbContext.Users.AddAsync(newRegistration);
+
+            await dbContext.CustomSaveChangesAsync();
+
+            return newRegistration.UserID;
+        }
     }
 }

@@ -14,6 +14,6 @@ namespace Paychex_SimpleTimeClock.DataAccess.Interface
 
         public Task<int> AddUserStartTime(int userId);
 
-
+        public Task<int> RegisterEmployee(string userName, string password);
     }
 }

@@ -44,7 +44,7 @@ namespace Paychex_SimpleTimeClock.DatabaseObjects
 
     public class Users
     {
-        [Key, Required]
+        [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserID { get; set; }
 
         [Required, MaxLength(50)]
