@@ -65,6 +65,8 @@ namespace Paychex_SimpleTimeClock.DataAccess.Repository
                     }
                 ).ToListAsync();
 
+            await dbContext.CustomSaveChangesAsync();
+
             return results;
 
                 //.Join(dbContext.Users,
@@ -107,7 +109,6 @@ namespace Paychex_SimpleTimeClock.DataAccess.Repository
                 .Where(x => x.UserID == userID)
                 .FirstOrDefaultAsync();
         }
-
 
     }
 }

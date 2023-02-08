@@ -15,7 +15,7 @@ namespace Paychex_SimpleTimeClock.Startup
 
         public async Task LoadTablesIntoMemory(IServiceProvider serviceProvider)
         {
-            await using var dbContext = new PaychexApplicationsDB(serviceProvider.GetRequiredService<DbContextOptions<PaychexApplicationsDB>>());
+            await using var dbContext = new PaychexApplicationsDB(serviceProvider.GetRequiredService<DbContextOptions<PaychexApplicationsDB>>(), _webHostEnvironment);
             var context = _webHostEnvironment.ContentRootPath;
 
             if (!dbContext.Roles.Any())
