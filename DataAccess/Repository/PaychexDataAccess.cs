@@ -62,9 +62,10 @@ namespace Paychex_SimpleTimeClock.DataAccess.Repository
                         userShifts.AvailableShiftID,
                         userShifts.UserShiftStart,
                         userShifts.UserShiftEnd
+                        //add unique id field here
                     }
                 ).ToListAsync();
-
+            //Todo:remove it here.
             await dbContext.CustomSaveChangesAsync();
 
             return results;
@@ -91,24 +92,59 @@ namespace Paychex_SimpleTimeClock.DataAccess.Repository
 
         //log clock out
 
-        public async Task<bool> IsClockedIn(int userID)
+        public async Task<bool> IsClockedIn(int userId)
         {
             await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
             return await dbContext.UserShifts
-                .Where(x => x.UserID == userID)
+                .Where(x => x.UserID == userId)
                 .Where(x => x.UserShiftStart < DateTime.Now)
                 .Where(x => x.UserShiftEnd == null)
                 .AnyAsync();
         }
 
 
-        public async Task<Users?> GetLoggedInUser(int userID)
+        public async Task<Users?> GetLoggedInUser(int userId)
         {
             await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
             return await dbContext.Users
-                .Where(x => x.UserID == userID)
+                .Where(x => x.UserID == userId)
                 .FirstOrDefaultAsync();
         }
+
+
+        public async Task<int> AddUserStartTime(int userId)
+        {
+            await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
+
+            var newRecord = new UserShifts
+            {
+                UserID = userId,
+                UserShiftStart = DateTime.Now
+            };
+
+            await dbContext.UserShifts.AddAsync(newRecord);
+
+            await dbContext.CustomSaveChangesAsync();
+
+            return  newRecord.UserShiftID;
+        }
+
+        public async Task<bool> AddUserEndTime(int userId)
+        {
+            //need a Primary Key to look it up.
+            
+            await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
+            var recordToUpdate = await dbContext.UserShifts
+                .Where(x => x.UserID == userId)
+                .FirstOrDefaultAsync();
+
+            recordToUpdate.UserShiftEnd = DateTime.Now;
+
+            return await dbContext.CustomSaveChangesAsync() > 0; 
+
+        }
+
+
 
     }
 }

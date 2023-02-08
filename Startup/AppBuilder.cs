@@ -15,6 +15,8 @@ namespace Paychex_SimpleTimeClock.Startup
             }
 
 
+            webApplication.UseHttpsRedirection();
+
             //Enable use of Session            
             webApplication.UseSession();
             webApplication.UseHttpsRedirection();

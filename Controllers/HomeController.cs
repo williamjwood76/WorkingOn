@@ -27,12 +27,13 @@ namespace Paychex_SimpleTimeClock.Controllers
         {
             var userId = (await _paychexDataAccess.Login(obj.GetStringValue("Username"), obj.GetStringValue("Password")));
             HttpContext.Session.SetString("UserID", userId.ToString());
-            
-            return !string.IsNullOrWhiteSpace(userId.ToString())
-                ? View("~/Views/TimeClock/Index.cshtml", await _paychexDataAccess.GetAvailableWorkShiftsByUser(GetUserID()))
-                : Json(false);
+
+            if (!string.IsNullOrWhiteSpace(userId.ToString()))
+                return Json(true);
+
+            return Json(false);
         }
-            
+
         public IActionResult Privacy() => View();
 
         public IActionResult Error() => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

@@ -1,9 +1,58 @@
-﻿@using Paychex_SimpleTimeClock.DatabaseObjects
-@{
+﻿@{
     ViewData["Title"] = "Time Clock";
-    var _model = (List<object>)Model;
-    var s = _model;
 }
+<script type="text/javascript" asp-append-version="true">
+    var paychex = paychex || {};
+    
+    $(()=>
+    {
+        //$("[data-uniqueIdentifer]")
+        $("#btnStartShift").on('click', () =>{ 
+            paychex.ajaxCall("TimeClock/ShiftStart")
+                .then((response) => {
+                    //refresh the page
+                    if (response)
+                        window.location = window.location;
+                });
+        });
+        $("#btnEndShift").on('click', () =>{ 
+            paychex.ajaxCall("TimeClock/ShiftEnd")
+                .then((response) => {
+                    console.log(reponse);
+                });
+        });
+        $("#btnStartBreak").on('click', () =>{ 
+            paychex.ajaxCall("TimeClock/BreakStart")
+                .then((response) => {
+                    console.log(reponse);
+                });
+        });
+        $("#btnEndBreak").on('click', () =>{
+            paychex.ajaxCall("TimeClock/BreakEnd")
+                .then((response) => {
+                    console.log(reponse);
+                });
+        });
+        $("#btnStartLunch").on('click', () =>{ 
+            paychex.ajaxCall("TimeClock/LunchtStart")
+                .then((response) => {
+                    console.log(reponse);
+                });
+        });
+        $("#btnEndLunch").on('click', () =>{ 
+            paychex.ajaxCall("TimeClock/LunchEnd")
+                .then((response) => {
+                    console.log(reponse);
+                });
+        });
+        
+
+
+    });
+
+</script>
+
+
 
 <div class="text-center">
     <h1 class="display-4">Welcome to the Secured Side</h1>
@@ -21,33 +70,44 @@
     <tbody>
         <tr>
             <td scope="row">
-                <input id="UserShiftStart" type="text" value="@DateTime.Now"/>
+                <input id="UserShiftStart"/>
             </td>
             <td>
-                <input id="txtUserShiftEnd" type="text" />
+                <input id="txtUserShiftEnd"/>
             </td>
-            <td><button id="btnSaveUserShiftLog">Log Shift</button></td>
+            <td>
+                @*Todo: make these visible invisible based on what is available*@
+                <button id="btnStartShift">Begin Shift</button>
+                <button id="btnEndShift">End Shift</button>
+                <button id="btnStartBreak">Begin Break</button> @*Todo: make these visible invisible based on how many are left*@
+                <button id="btnEndBreak">End Break</button>
+                <button id="btnStartLunch">Begin Lunch</button>
+                <button id="btnEndLunch">End Lunch</button>
+            </td>
         </tr>
-@foreach(var v in Model)
-{
-        <tr>
-            <td scope="row">
-                @v.UserName
-            </td>
-            <td>
-                @v.UserShiftEnd
-            </td>
-            <td>
-                @v.UserShiftEnd
-            </td>
-@*            <td>
+        @foreach(var v in Model)
+        {
+            <tr>
+                
+                @*<td scope="row" data-uniqueIdentifer="@v.UserName">*@
+                
+                <td scope="row">
+                    @v.UserName
+                </td>
+                <td>
+                    @v.UserShiftStart
+                </td>
+                <td>
+                    @v.UserShiftEnd
+                </td>
+                @*            <td>
                 <input name="AvailableBreakName" type="text" value="@v.AvailableBreakName" />
             </td>
             <td>
                 <input type=checkbox name="chkActive" checked="@v.Active" value="true" class="form-check-input" />
             </td>*@
-        </tr>
- }
+            </tr>
+        }
     </tbody>
 </table>
 

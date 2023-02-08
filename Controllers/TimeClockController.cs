@@ -20,9 +20,22 @@ namespace Paychex_SimpleTimeClock.Controllers
         // GET: TimeClockController
         public async Task<IActionResult> Index()
         {
-            //var someValue = await _paychexDataAccess.GetAvailableWorkShiftsByUser(GetUserID());
-            return View();
-        } 
+            return View(await _paychexDataAccess.GetAvailableWorkShiftsByUser(GetUserID()));
+        }
+
+        public async Task<IActionResult> ShiftStart()
+        {
+            return Json(await _paychexDataAccess.AddUserStartTime(GetUserID()));
+        }
+
+        //Probably nee record to update here.
+        public async Task<IActionResult> ShiftEnd()
+        {
+            //return Json(await _paychexDataAccess.AddUserEndTime(GetUserID()));
+            return null;
+        }
+
+
 
         // GET: TimeClockController/Details/5
         //public ActionResult Details(int id)

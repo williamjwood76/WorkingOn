@@ -12,5 +12,8 @@ namespace Paychex_SimpleTimeClock.DataAccess.Interface
 
         public Task<IEnumerable<object>> GetAvailableWorkShiftsByUser(int userId);
 
+        public Task<int> AddUserStartTime(int userId);
+
+
     }
 }

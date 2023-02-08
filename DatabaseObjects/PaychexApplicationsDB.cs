@@ -26,19 +26,17 @@ namespace Paychex_SimpleTimeClock.DatabaseObjects
 
 
 
-        public async Task CustomSaveChangesAsync()
+        public async Task<int> CustomSaveChangesAsync()
         {
             var context = _webHostEnvironment.ContentRootPath;
 
-            await File.WriteAllTextAsync($"{context}\"Resources\\\\Roles.json\"", JsonSerializer.Serialize(await Roles.ToListAsync()));
             //Todo:  for all files
+            await File.WriteAllTextAsync($"{context}Resources\\Roles.json", JsonSerializer.Serialize(await Roles.ToListAsync()));
+            await File.WriteAllTextAsync($"{context}Resources\\UserShifts.json", JsonSerializer.Serialize(await UserShifts.ToListAsync()));
 
-            await SaveChangesAsync();
+
+            return await SaveChangesAsync();
         }
 
     }
-
-
-
-
 }
